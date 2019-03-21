@@ -7,5 +7,5 @@ def test_form_sends_mail(client):
         reverse("order"), {"product_name": "Testname", "main_email": "foo@example.com"}
     )
 
-    assert len(mail.outbox) == 1
-    assert "foo@example.com" in mail.outbox[0].subject
+    assert len(mail.outbox) == 1  # nosec
+    assert "foo@example.com" in mail.outbox[0].subject  # nosec
