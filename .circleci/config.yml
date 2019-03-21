@@ -1,0 +1,112 @@
+version: 2.1
+
+orbs:
+  codecov: codecov/codecov@1.0.4
+
+executors:
+  python:
+    docker:
+      - image: circleci/python:3.7.2
+
+commands:
+  attach-with-venv:
+    description: "Attachs workspace and enables the venv from install-python-packages"
+    steps:
+      - attach_workspace:
+          at: /home/circleci
+      - run:
+          name: Enable venv persistently
+          command: |
+            echo "source /home/circleci/venv/bin/activate" >> "$BASH_ENV"
+
+jobs:
+  install-python-packages:
+    executor: python
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore Python venv if matching venv is found
+          keys:
+            - venv-v1-{{ checksum "requirements-dev.txt" }}
+      - restore_cache:
+          name: Restore Python package cache
+          keys:
+            - pip-v1-{{ checksum "requirements-dev.txt" }}
+            - pip-v1-
+      - run:
+          name: Create venv and install Python packages
+          environment:
+            PIP_PROGRESS_BAR: "off"
+          command: |
+            # If the venv exists this command does nothing.
+            python -m venv ~/venv
+            source ~/venv/bin/activate
+            make pip-sync
+      - save_cache:
+          name: Store Python package cache for further reuse
+          key: pip-v1-{{ checksum "requirements-dev.txt" }}
+          paths:
+            - ~/.cache/pip
+      - save_cache:
+          name: Store Python venv for further reuse
+          key: venv-v1-{{ checksum "requirements-dev.txt" }}
+          paths:
+            - ~/venv
+      - persist_to_workspace:
+          name: Persist project and venv to workspace
+          root: /home/circleci
+          paths:
+            - project
+            - venv
+  make-job:
+    parameters:
+      targets:
+        type: string
+      upload-to-codecov:
+        type: boolean
+        default: false
+    executor: python
+    steps:
+      - attach-with-venv
+      - run:
+          name: make << parameters.targets >>
+          command: |
+            make << parameters.targets >>
+      - when:
+          condition: << parameters.upload-to-codecov >>
+          steps:
+            - codecov/upload
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - install-python-packages:
+          filters: &filter-branch-or-tagged
+            tags:
+              only: /.*/
+      - make-job:
+          filters: *filter-branch-or-tagged
+          name: bandit
+          targets: bandit
+          requires: &requires-install
+            - install-python-packages
+      - make-job:
+          filters: *filter-branch-or-tagged
+          name: black-check
+          targets: black-check
+          requires: &requires-install
+            - install-python-packages
+      - make-job:
+          filters: *filter-branch-or-tagged
+          name: black-check
+          targets: black-check
+          requires: &requires-install
+            - install-python-packages
+      - make-job:
+          filters: *filter-branch-or-tagged
+          name: test
+          targets: test
+          upload-to-codecov: true
+          requires: &requires-install
+            - install-python-packages
