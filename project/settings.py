@@ -16,7 +16,11 @@ class Common(Configuration):
 
     ALLOWED_HOSTS = values.ListValue([])
 
-    INSTALLED_APPS = ["django.contrib.messages", "django.contrib.staticfiles"]
+    INSTALLED_APPS = [
+        "django.contrib.messages",
+        "django.contrib.staticfiles",
+        "project.apps.orderform",
+    ]
 
     MIDDLEWARE = [
         "django.middleware.security.SecurityMiddleware",
