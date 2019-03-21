@@ -4,13 +4,15 @@
 #
 #    make update-requirements
 #
+appdirs==1.4.3            # via black
 atomicwrites==1.3.0       # via pytest
-attrs==19.1.0             # via pytest
+attrs==19.1.0             # via black, pytest
 backcall==0.1.0           # via ipython
 bandit==1.5.1
+black==19.3b0
 certifi==2019.3.9         # via requests
 chardet==3.0.4            # via requests
-click==7.0                # via pip-tools
+click==7.0                # via black, pip-tools
 codecov==2.0.15
 coverage==4.5.3           # via codecov
 decorator==4.4.0          # via ipython, traitlets
@@ -44,6 +46,7 @@ six==1.12.0               # via bandit, pip-tools, prompt-toolkit, pytest, steve
 smmap2==2.0.5             # via gitdb2
 sqlparse==0.3.0           # via django-debug-toolbar
 stevedore==1.30.1         # via bandit
+toml==0.10.0              # via black
 traitlets==4.3.2          # via ipython
 urllib3==1.24.1           # via requests
 wcwidth==0.1.7            # via prompt-toolkit

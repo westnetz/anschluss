@@ -5,11 +5,19 @@ help:
 	@grep -E '^[\.a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 .PHONY: check
-check: bandit pip-check test ## Run all checks
+check: bandit black-check pip-check test ## Run all checks
 
 .PHONY: bandit
 bandit: ## Run bandit
 	python -m bandit -r project
+
+.PHONY: black-check
+black-check: ## Check code formatting
+	python -m black --check project
+
+.PHONY: black
+black: ## Format code
+	python -m black project
 
 .PHONY: test
 test: ## Run unittests
