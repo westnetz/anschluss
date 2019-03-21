@@ -10,6 +10,7 @@ class Common(Configuration):
 
     SECRET_KEY = values.SecretValue()
 
+    ADMINS = values.SingleNestedTupleValue(tuple())
     DEBUG = False
     TEMPLATE_DEBUG = False
 
@@ -95,9 +96,31 @@ class DebugToolbar:
 
 class Prod(Common):
     STATIC_ROOT = values.Value("/srv/static")
+    DEFAULT_FROM_EMAIL = values.SecretValue()
+    EMAIL_HOST = values.SecretValue()
+    EMAIL_HOST_PASSWORD = values.SecretValue()
+    EMAIL_HOST_USER = values.SecretValue()
+    EMAIL_PORT = values.IntegerValue(25)
+    EMAIL_USE_TLS = True
 
 
-class Dev(DebugToolbar, Common):
+class DummyAdmins:
+    """Set dummy admins to test email sending"""
+
+    ADMINS = (("John Doe", "john@example.com"),)
+
+
+class DummySecret:
+    """Set dummy secret"""
+
     SECRET_KEY = "insecure"
+
+
+class Test(DummyAdmins, DummySecret, Common):
+    pass
+
+
+class Dev(DebugToolbar, DummyAdmins, DummySecret, Common):
     DEBUG = True
     TEMPLATE_DEBUG = True
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
