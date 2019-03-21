@@ -14,7 +14,7 @@ certifi==2019.3.9         # via requests
 chardet==3.0.4            # via requests
 click==7.0                # via black, pip-tools
 codecov==2.0.15
-coverage==4.5.3           # via codecov
+coverage==4.5.3           # via codecov, pytest-cov
 decorator==4.4.0          # via ipython, traitlets
 django-configurations==2.1
 django-debug-toolbar==1.11
@@ -37,6 +37,7 @@ prompt-toolkit==2.0.9     # via ipython
 ptyprocess==0.6.0         # via pexpect
 py==1.8.0                 # via pytest
 pygments==2.3.1           # via ipython
+pytest-cov==2.6.1
 pytest-django==3.4.8
 pytest==4.3.1
 pytz==2018.9

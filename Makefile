@@ -21,7 +21,7 @@ black: ## Format code
 
 .PHONY: test
 test: ## Run unittests
-	python -m pytest $(PYTEST_ARGS)
+	python -m pytest --cov=./ $(PYTEST_ARGS)
 
 .PHONY: git-flow
 git-flow: ## Initialize git-flow
@@ -48,9 +48,9 @@ export CUSTOM_COMPILE_COMMAND := make update-requirements
 
 .PHONY: update-requirements
 update-requirements: ## Regenerate requirements.txt with newest versions of dependencies
-	python -m piptools compile --rebuild --upgrade requirements.in
-	python -m piptools compile --rebuild --upgrade deploy/requirements.in
-	python -m piptools compile --rebuild --upgrade requirements-dev.in
+	python -m piptools compile --rebuild --upgrade --quiet requirements.in
+	python -m piptools compile --rebuild --upgrade --quiet deploy/requirements.in
+	python -m piptools compile --rebuild --upgrade --quiet requirements-dev.in
 
 .PHONY: upgrade
 upgrade: ## Update all packages as available
