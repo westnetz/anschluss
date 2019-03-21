@@ -99,8 +99,8 @@ workflows:
             - install-python-packages
       - make-job:
           filters: *filter-branch-or-tagged
-          name: black-check
-          targets: black-check
+          name: pip-check
+          targets: pip-check
           requires: &requires-install
             - install-python-packages
       - make-job:
