@@ -1,0 +1,8 @@
+-r deploy/requirements.txt
+bandit==1.5.1
+codecov==2.0.15
+django-debug-toolbar==1.11
+ipython==7.3.0
+pip-tools==3.5.0
+pytest==4.3.1
+pytest-django==3.4.8
