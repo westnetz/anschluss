@@ -1,0 +1,6 @@
+There is a new order:
+
+{% for field,value in data.items %}{{ field }}: {{ value }}
+{% endfor %}
+Best Regards,
+Your order form

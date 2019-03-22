@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 
-urlpatterns = []
+urlpatterns = [path("", include("project.apps.orderform.urls"))]
 
 if "debug_toolbar" in settings.INSTALLED_APPS:
     import debug_toolbar
