@@ -48,7 +48,6 @@ class OrderForm(Form):
         ).strip()
 
     def save(self):
-        print("Saving form!")
         order_message = EmailMessage(
             subject=self.subject,
             body=self.body,
