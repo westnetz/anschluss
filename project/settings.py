@@ -111,6 +111,7 @@ class Prod(Common):
     EMAIL_HOST_USER = values.SecretValue()
     EMAIL_PORT = values.IntegerValue(25)
     EMAIL_USE_TLS = True
+    EMAIL_TIMEOUT = 10
 
 
 class DummyAdmins:
