@@ -17,6 +17,7 @@ class Common(Configuration):
     ALLOWED_HOSTS = values.ListValue([])
 
     INSTALLED_APPS = [
+        "whitenoise.runserver_nostatic",
         "django.contrib.messages",
         "django.contrib.staticfiles",
         "project.apps.orderform",
@@ -24,6 +25,7 @@ class Common(Configuration):
 
     MIDDLEWARE = [
         "django.middleware.security.SecurityMiddleware",
+        "whitenoise.middleware.WhiteNoiseMiddleware",
         "django.contrib.sessions.middleware.SessionMiddleware",
         "django.middleware.locale.LocaleMiddleware",
         "django.middleware.common.CommonMiddleware",
@@ -77,6 +79,8 @@ class Common(Configuration):
     USE_TZ = True
 
     STATIC_URL = "/static/"
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 
 class DebugToolbar:
@@ -99,7 +103,8 @@ class DebugToolbar:
 
 
 class Prod(Common):
-    STATIC_ROOT = values.Value("/srv/static")
+    """Production Settings"""
+
     DEFAULT_FROM_EMAIL = values.SecretValue()
     EMAIL_HOST = values.SecretValue()
     EMAIL_HOST_PASSWORD = values.SecretValue()

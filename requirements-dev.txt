@@ -51,3 +51,4 @@ toml==0.10.0              # via black
 traitlets==4.3.2          # via ipython
 urllib3==1.24.1           # via requests
 wcwidth==0.1.7            # via prompt-toolkit
+whitenoise==4.1.2
