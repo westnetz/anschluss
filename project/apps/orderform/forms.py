@@ -16,6 +16,8 @@ class OrderForm(Form):
     product_name = CharField(label=_("Product Name"))
     main_email = EmailField(label=_("E-Mail Address"))
 
+    SALT = "orderform"
+
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop("request")
         super().__init__(*args, **kwargs)
@@ -39,7 +41,9 @@ class OrderForm(Form):
 
     @property
     def redo_url(self):
-        url = reverse("order_prefilled", args=(dumps(self.data),))
+        url = reverse(
+            "order_prefilled", args=(dumps(self.data, compress=True, salt=self.SALT),)
+        )
         if self.request:
             url = self.request.build_absolute_uri(url)
         return url

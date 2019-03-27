@@ -18,7 +18,7 @@ class OrderView(FormView):
         if "data" not in self.kwargs:
             return super().get_initial()
 
-        return loads(self.kwargs["data"])
+        return loads(self.kwargs["data"], salt=OrderForm.SALT)
 
     def get_form_kwargs(self):
         rv = super().get_form_kwargs()
