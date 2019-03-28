@@ -2,6 +2,8 @@ import os
 
 from configurations import Configuration, values
 
+from .utils.values import ListOfDictsValue
+
 
 class Common(Configuration):
     """Configure project with sane defaults"""
@@ -77,6 +79,22 @@ class Common(Configuration):
     USE_TZ = True
 
     STATIC_URL = "/static/"
+
+    ORDERFORM_FIELDS = ListOfDictsValue(
+        [
+            {
+                "name": "product_name",
+                "type": "CharField",
+                "kwargs": {"label": "Product Name"},
+            },
+            {
+                "name": "main_email",
+                "type": "EmailField",
+                "kwargs": {"label": "E-Mail Address"},
+            },
+        ]
+    )
+    ORDERFORM_FROM_EMAIL = values.Value("main_email")
 
 
 class DebugToolbar:

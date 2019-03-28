@@ -2,7 +2,7 @@ from email.mime.text import MIMEText
 
 from django.conf import settings
 from django.core.mail import EmailMessage
-from django.forms import Form, CharField, EmailField
+from django import forms
 from django.template import loader
 from django.utils.timezone import now
 from django.utils.translation import gettext_lazy as _
@@ -10,9 +10,13 @@ from django.utils.translation import gettext_lazy as _
 import yaml
 
 
-class OrderForm(Form):
-    product_name = CharField(label=_("Product Name"))
-    main_email = EmailField(label=_("E-Mail Address"))
+class OrderForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in settings.ORDERFORM_FIELDS:
+            self.fields[field["name"]] = getattr(forms, field["type"])(
+                **field["kwargs"]
+            )
 
     @property
     def yaml_filename(self):
@@ -53,7 +57,7 @@ class OrderForm(Form):
             subject=self.subject,
             body=self.body,
             to=[address for _, address in settings.ADMINS],
-            reply_to=(self.cleaned_data["main_email"],),
+            reply_to=(self.cleaned_data[settings.ORDERFORM_FROM_EMAIL],),
             attachments=self.attachments,
         )
         order_message.send()
