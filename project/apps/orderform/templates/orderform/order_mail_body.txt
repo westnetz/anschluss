@@ -2,5 +2,8 @@ There is a new order:
 
 {% for field,value in data.items %}{{ field }}: {{ value }}
 {% endfor %}
+
+To prefill the form again with those values, visit: {{ redo_url }}
+
 Best Regards,
 Your order form
