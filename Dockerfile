@@ -1,4 +1,4 @@
-FROM python:3.7.2-alpine@sha256:2bee696799913a3a2615d469761f355ccee1460e00a22b9e4580cf039a818e24
+FROM python:3.7.3-alpine@sha256:11568bb68bd375727e468ea5995f556139ff305eed9d8ee1d04b1a4a03a6486a
 
 RUN mkdir -p /app/deploy
 
