@@ -78,6 +78,11 @@ class Common(Configuration):
 
     STATIC_URL = "/static/"
 
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, "project", "static"),
+        os.path.join(BASE_DIR, "project", "apps", "orderform", "static"),
+    ]
+
 
 class DebugToolbar:
     """Enable Django Debug Toolbar as Mixin"""

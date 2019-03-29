@@ -1,13 +1,17 @@
-{% extends "base.html" %}
+{% extends "orderform/order_base.html" %}
 {% load i18n %}
 
 {% block title %}{% trans "Order Form" %}{% endblock %}
 
-{% block body %}
-<h1>{% trans "Order Form" %}</h1>
+{% block content %}
 <form method="post">
   {% csrf_token %}
-  {{ form.as_p }}
+  {% for field in form %}
+	<div class="row">
+		<b>{{ field.label}}:</b> {{ field }}
+		{{ field.help_text }}
+	</div>
+  {% endfor %}
   <button type="submit">{% trans "Send" %}</button>
 </form>
 {% endblock %}

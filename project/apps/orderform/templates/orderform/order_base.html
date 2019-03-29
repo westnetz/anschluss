@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block body %}
+      <div class="section categories">
+        <div class="container">
+              <div class="row">
+                <div class="two columns"></div>
+                  <div class="eight columns">
+                      <a href="/"><img class="header" src="{% static "img/anschluss.svg" %}"></a> 
+                    {% block content %}{% endblock %}
+                    <p class="imprint">
+                    <b>westnetz anschluss</b> ist ein Service für Kunden des Westnetz w.V.,
+                    Karl-Heine-Straße 93, 04229 Leipzig</p>
+                  </div>
+                  <div class="two columns"></div>
+              </div>
+        </div>
+      </div>
+
+{% endblock %}
