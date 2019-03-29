@@ -19,13 +19,27 @@ class Common(Configuration):
     ALLOWED_HOSTS = values.ListValue([])
 
     INSTALLED_APPS = [
+        "whitenoise.runserver_nostatic",
         "django.contrib.messages",
         "django.contrib.staticfiles",
         "project.apps.orderform",
     ]
 
+    LOGGING = {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "handlers": {"console": {"class": "logging.StreamHandler"}},
+        "loggers": {
+            "django": {
+                "handlers": ["console"],
+                "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
+            }
+        },
+    }
+
     MIDDLEWARE = [
         "django.middleware.security.SecurityMiddleware",
+        "whitenoise.middleware.WhiteNoiseMiddleware",
         "django.contrib.sessions.middleware.SessionMiddleware",
         "django.middleware.locale.LocaleMiddleware",
         "django.middleware.common.CommonMiddleware",
@@ -79,6 +93,8 @@ class Common(Configuration):
     USE_TZ = True
 
     STATIC_URL = "/static/"
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
     ORDERFORM_FIELDS = ListOfDictsValue(
         [
@@ -117,13 +133,15 @@ class DebugToolbar:
 
 
 class Prod(Common):
-    STATIC_ROOT = values.Value("/srv/static")
+    """Production Settings"""
+
     DEFAULT_FROM_EMAIL = values.SecretValue()
     EMAIL_HOST = values.SecretValue()
     EMAIL_HOST_PASSWORD = values.SecretValue()
     EMAIL_HOST_USER = values.SecretValue()
     EMAIL_PORT = values.IntegerValue(25)
     EMAIL_USE_TLS = True
+    EMAIL_TIMEOUT = 10
 
 
 class DummyAdmins:

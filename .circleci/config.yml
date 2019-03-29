@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   codecov: codecov/codecov@1.0.4
+  docker-publish: circleci/docker-publish@0.1.6
 
 executors:
   python:
@@ -77,6 +78,16 @@ jobs:
           steps:
             - codecov/upload
 
+x-aliases:
+  docker-publish-args: &docker-publish-args
+    registry: $DOCKER_REGISTRY
+    image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+    requires:
+      - bandit
+      - black-check
+      - pip-check
+      - test
+
 workflows:
   version: 2
   test:
@@ -95,18 +106,39 @@ workflows:
           filters: *filter-branch-or-tagged
           name: black-check
           targets: black-check
-          requires: &requires-install
-            - install-python-packages
+          requires: *requires-install
       - make-job:
           filters: *filter-branch-or-tagged
           name: pip-check
           targets: pip-check
-          requires: &requires-install
-            - install-python-packages
+          requires: *requires-install
       - make-job:
           filters: *filter-branch-or-tagged
           name: test
           targets: test
           upload-to-codecov: true
-          requires: &requires-install
-            - install-python-packages
+          requires: *requires-install
+      - docker-publish/publish:
+          <<: *docker-publish-args
+          tag: latest
+          filters:
+            branches:
+              only:
+                - master
+      - docker-publish/publish:
+          <<: *docker-publish-args
+          tag: edge
+          filters:
+            branches:
+              only:
+                - develop
+      - docker-publish/publish:
+          <<: *docker-publish-args
+          tag: $CIRCLE_TAG
+          filters:
+            branches:
+              ignore:
+                - /.*/
+            tags:
+              only:
+                - /.*/
