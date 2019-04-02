@@ -57,3 +57,7 @@ upgrade: ## Update all packages as available
 	python -m pip install --upgrade-strategy eager --upgrade $$(cat requirements.in | sed -n 's/==.*$$//p')
 	python -m pip install --upgrade-strategy eager --upgrade $$(cat deploy/requirements.in | sed -n 's/==.*$$//p')
 	python -m pip install --upgrade-strategy eager --upgrade $$(cat requirements-dev.in | sed -n 's/==.*$$//p')
+
+.PHONY: ci-requirements
+ci-requirements: ## Check requirements.txt in CircleCI
+	bin/ci-requirements.sh

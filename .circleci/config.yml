@@ -98,10 +98,15 @@ workflows:
               only: /.*/
       - make-job:
           filters: *filter-branch-or-tagged
-          name: bandit
-          targets: bandit
+          name: ci-requirements
+          targets: ci-requirements
           requires: &requires-install
             - install-python-packages
+      - make-job:
+          filters: *filter-branch-or-tagged
+          name: bandit
+          targets: bandit
+          requires: *requires-install
       - make-job:
           filters: *filter-branch-or-tagged
           name: black-check
