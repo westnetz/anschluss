@@ -11,8 +11,8 @@ case "${CIRCLE_BRANCH}" in
 	;;
 esac
 
-git config --global user.email "$CIRCLE_USERNAME@users.noreply.github.com"
-git config --global user.name "$CIRCLE_USERNAME"
+git config --global user.email "circleci@westnetz.org"
+git config --global user.name "Westnetz CircleCI"
 make update-requirements
 if [ -z "$(git status --porcelain)" ]; then
 	exit 0
