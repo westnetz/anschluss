@@ -24,7 +24,7 @@ gitpython==2.1.11         # via bandit
 gunicorn==19.9.0
 idna==2.8                 # via requests
 ipython-genutils==0.2.0   # via traitlets
-ipython==7.3.0
+ipython==7.4.0
 jedi==0.13.3              # via ipython
 more-itertools==7.0.0     # via pytest
 parso==0.3.4              # via jedi
