@@ -11,7 +11,7 @@ case "${CIRCLE_BRANCH}" in
 	;;
 esac
 
-git config --global user.email "circleci@westnetz.org"
+git config --global user.email "info+westnetz-circleci@westnetz.org"
 git config --global user.name "Westnetz CircleCI"
 make update-requirements
 if [ -z "$(git status --porcelain)" ]; then
@@ -19,7 +19,8 @@ if [ -z "$(git status --porcelain)" ]; then
 fi
 
 git commit --all --message "Update requirements"
-git push --set-upstream origin "${CIRCLE_BRANCH}"
+git remote add origin-update "https://${GH_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git"
+git push --set-upstream origin-update "${CIRCLE_BRANCH}"
 
 echo "Failing this build. The branch will be rebuilt because of the update which we just pushed." >&2
 exit 1
