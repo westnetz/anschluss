@@ -5,7 +5,8 @@
 #    make update-requirements
 #
 django-configurations==2.1
-django==2.1.7
+django==2.2
 pytz==2018.9              # via django
 pyyaml==5.1
+sqlparse==0.3.0           # via django
 whitenoise==4.1.2
