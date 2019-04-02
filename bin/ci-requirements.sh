@@ -19,6 +19,7 @@ if [ -z "$(git status --porcelain)" ]; then
 fi
 
 git commit --all --message "Update requirements"
-git push
+git push --set-upstream origin "${CIRCLE_BRANCH}"
+
 echo "Failing this build. The branch will be rebuilt because of the update which we just pushed." >&2
 exit 1
