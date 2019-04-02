@@ -1,4 +1,7 @@
 {
   "extends": ["config:base", "docker:enableMajor"],
-  "labels": ["renovate"]
+  "labels": ["renovate"],
+  "pip_requirements": {
+    "fileMatch": ["(^|/)requirements.*\\.in$"]
+  }
 }
