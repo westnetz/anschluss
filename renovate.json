@@ -1,7 +1,11 @@
 {
   "extends": ["config:base", "docker:enableMajor"],
   "labels": ["renovate"],
-  "ignorePaths": ["*.txt"],
+  "ignorePaths": [
+    "deploy/requirements.txt",
+    "requirements.txt",
+    "requirements-dev.txt"
+  ],
   "pip_requirements": {
     "fileMatch": ["(^|/)requirements.*\\.in$"]
   }
