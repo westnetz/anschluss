@@ -4,7 +4,7 @@ black==19.3b0
 codecov==2.0.15
 django-debug-toolbar==1.11
 ipython==7.4.0
-pip-tools==3.5.0
+pip-tools==3.6.0
 pytest==4.4.0
 pytest-cov==2.6.1
 pytest-django==3.4.8
