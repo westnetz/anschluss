@@ -27,9 +27,9 @@ ipython-genutils==0.2.0   # via traitlets
 ipython==7.4.0
 jedi==0.13.3              # via ipython
 more-itertools==7.0.0     # via pytest
-parso==0.3.4              # via jedi
+parso==0.4.0              # via jedi
 pbr==5.1.3                # via stevedore
-pexpect==4.6.0            # via ipython
+pexpect==4.7.0            # via ipython
 pickleshare==0.7.5        # via ipython
 pip-tools==3.5.0
 pluggy==0.9.0             # via pytest
@@ -40,7 +40,7 @@ pygments==2.3.1           # via ipython
 pytest-cov==2.6.1
 pytest-django==3.4.8
 pytest==4.4.0
-pytz==2018.9
+pytz==2019.1
 pyyaml==5.1
 requests==2.21.0          # via codecov
 six==1.12.0               # via bandit, pip-tools, prompt-toolkit, pytest, stevedore, traitlets
