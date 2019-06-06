@@ -7,7 +7,7 @@ orbs:
 executors:
   python:
     docker:
-      - image: circleci/python:3.7.3
+      - image: circleci/python:3.8.0b1
 
 commands:
   attach-with-venv:
