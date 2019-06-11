@@ -5,7 +5,7 @@
 #    make update-requirements
 #
 django-configurations==2.1
-django==2.2
+django==2.2.2
 gunicorn==19.9.0
 pytz==2019.1
 pyyaml==5.1
