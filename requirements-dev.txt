@@ -23,11 +23,12 @@ gitdb2==2.0.5             # via gitpython
 gitpython==2.1.11         # via bandit
 gunicorn==19.9.0
 idna==2.8                 # via requests
-importlib-metadata==0.17  # via pluggy
+importlib-metadata==0.17  # via pluggy, pytest
 ipython-genutils==0.2.0   # via traitlets
 ipython==7.4.0
 jedi==0.13.3              # via ipython
 more-itertools==7.0.0     # via pytest
+packaging==19.0           # via pytest
 parso==0.4.0              # via jedi
 pbr==5.2.1                # via stevedore
 pexpect==4.7.0            # via ipython
@@ -38,19 +39,20 @@ prompt-toolkit==2.0.9     # via ipython
 ptyprocess==0.6.0         # via pexpect
 py==1.8.0                 # via pytest
 pygments==2.4.2           # via ipython
+pyparsing==2.4.0          # via packaging
 pytest-cov==2.6.1
 pytest-django==3.4.8
-pytest==4.4.1
+pytest==4.6.2
 pytz==2019.1
 pyyaml==5.1
 requests==2.22.0          # via codecov
-six==1.12.0               # via bandit, pip-tools, prompt-toolkit, pytest, stevedore, traitlets
+six==1.12.0               # via bandit, packaging, pip-tools, prompt-toolkit, pytest, stevedore, traitlets
 smmap2==2.0.5             # via gitdb2
 sqlparse==0.3.0
 stevedore==1.30.1         # via bandit
 toml==0.10.0              # via black
 traitlets==4.3.2          # via ipython
 urllib3==1.25.3           # via requests
-wcwidth==0.1.7            # via prompt-toolkit
+wcwidth==0.1.7            # via prompt-toolkit, pytest
 whitenoise==4.1.2
 zipp==0.5.1               # via importlib-metadata
