@@ -153,7 +153,7 @@ class DummyAdmins:
 class DummySecret:
     """Set dummy secret"""
 
-    SECRET_KEY = "insecure"
+    SECRET_KEY = "insecure"  # nosec
 
 
 class Test(DummyAdmins, DummySecret, Common):
