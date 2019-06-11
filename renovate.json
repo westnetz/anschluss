@@ -8,5 +8,6 @@
   ],
   "pip_requirements": {
     "fileMatch": ["(^|/)requirements.*\\.in$"]
-  }
+  },
+  "rebaseStalePrs": true
 }
