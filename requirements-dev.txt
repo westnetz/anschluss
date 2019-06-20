@@ -10,14 +10,14 @@ attrs==19.1.0             # via black, pytest
 backcall==0.1.0           # via ipython
 bandit==1.6.0
 black==19.3b0
-certifi==2019.3.9         # via requests
+certifi==2019.6.16        # via requests
 chardet==3.0.4            # via requests
 click==7.0                # via black, pip-tools
 codecov==2.0.15
 coverage==4.5.3           # via codecov, pytest-cov
 decorator==4.4.0          # via ipython, traitlets
 django-configurations==2.1
-django-debug-toolbar==1.11
+django-debug-toolbar==2.0
 django==2.2.2
 gitdb2==2.0.5             # via gitpython
 gitpython==2.1.11         # via bandit
