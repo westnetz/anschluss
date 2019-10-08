@@ -6,7 +6,7 @@
 #
 django-configurations==2.1
 django==2.2.4
-pytz==2019.2              # via django
+pytz==2019.3              # via django
 pyyaml==5.1.1
 sqlparse==0.3.0           # via django
 whitenoise==4.1.3
