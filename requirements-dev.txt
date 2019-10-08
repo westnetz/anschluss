@@ -6,7 +6,7 @@
 #
 appdirs==1.4.3            # via black
 atomicwrites==1.3.0       # via pytest
-attrs==19.1.0             # via black, pytest
+attrs==19.1.0             # via black, packaging, pytest
 backcall==0.1.0           # via ipython
 bandit==1.6.0
 black==19.3b0
@@ -14,23 +14,23 @@ certifi==2019.6.16        # via requests
 chardet==3.0.4            # via requests
 click==7.0                # via black, pip-tools
 codecov==2.0.15
-coverage==4.5.3           # via codecov, pytest-cov
+coverage==4.5.4           # via codecov, pytest-cov
 decorator==4.4.0          # via ipython, traitlets
 django-configurations==2.1
 django-debug-toolbar==1.11
-django==2.2.3
+django==2.2.4
 gitdb2==2.0.5             # via gitpython
-gitpython==2.1.11         # via bandit
+gitpython==2.1.13         # via bandit
 gunicorn==19.9.0
 idna==2.8                 # via requests
-importlib-metadata==0.18  # via pluggy, pytest
+importlib-metadata==0.19  # via pluggy, pytest
 ipython-genutils==0.2.0   # via traitlets
 ipython==7.5.0
 jedi==0.14.1              # via ipython
-more-itertools==7.1.0     # via pytest
-packaging==19.0           # via pytest
+more-itertools==7.2.0     # via pytest
+packaging==19.1           # via pytest
 parso==0.5.1              # via jedi
-pbr==5.4.0                # via stevedore
+pbr==5.4.2                # via stevedore
 pexpect==4.7.0            # via ipython
 pickleshare==0.7.5        # via ipython
 pip-tools==3.8.0
@@ -39,11 +39,11 @@ prompt-toolkit==2.0.9     # via ipython
 ptyprocess==0.6.0         # via pexpect
 py==1.8.0                 # via pytest
 pygments==2.4.2           # via ipython
-pyparsing==2.4.0          # via packaging
+pyparsing==2.4.2          # via packaging
 pytest-cov==2.7.1
 pytest-django==3.5.0
 pytest==4.6.3
-pytz==2019.1
+pytz==2019.2
 pyyaml==5.1.1
 requests==2.22.0          # via codecov
 six==1.12.0               # via bandit, packaging, pip-tools, prompt-toolkit, pytest, stevedore, traitlets
